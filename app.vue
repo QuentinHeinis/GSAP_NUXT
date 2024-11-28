@@ -11,6 +11,7 @@ onMounted(() => {
     () =>
       new Lenis({
         infinite: true,
+        syncTouch:true
       })
   );
 
