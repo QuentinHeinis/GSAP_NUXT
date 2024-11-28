@@ -1,0 +1,48 @@
+@use "foundations/reset" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Space+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap");
+
+:root {
+  --text-color: rgb(26, 26, 25);
+  --background-color: rgb(236, 236, 224);
+  &:has(.toggleColor[data-color-theme="dark"]) {
+    --text-color: rgb(236, 236, 224);
+    --background-color: rgb(26, 26, 25);
+  }
+}
+
+*,
+*::after,
+*::before {
+  transition: color ease 0.3s, background ease 0.3s;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+
+  color: var(--text-color);
+  background: var(--background-color);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
