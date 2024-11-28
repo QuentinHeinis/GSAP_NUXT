@@ -28,10 +28,10 @@ defineProps({
 
 <style lang="scss" scoped>
 .hero {
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
   &.maxHeight {
-    max-height: 100vh;
+    max-height: 100dvh;
   }
 }
 .grid {
