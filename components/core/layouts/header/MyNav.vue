@@ -81,7 +81,7 @@ onMounted(() => {
   background: var(--background-color);
   transition: all 0.5s ease-in-out;
   padding-inline: rem(24);
-
+  height:100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,6 +91,7 @@ onMounted(() => {
   @include media(md) {
     position: static;
     background: transparent;
+    height:fit-content;
     translate: 0 0;
     flex-direction: row;
     gap: rem(16);
