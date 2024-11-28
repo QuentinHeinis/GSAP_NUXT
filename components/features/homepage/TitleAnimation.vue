@@ -120,7 +120,7 @@ onMounted(() => {
   background: var(--text-color);
   color: var(--background-color);
 
-  height: 100vh;
+  height: 100dvh;
 
   @media screen and (min-width: 375px) {
     font-size: rem(48);
