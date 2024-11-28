@@ -5,7 +5,7 @@ const loaderAnime = useState("loaderAnime");
 let animation = (tl: gsap.core.Timeline, width: Ref) => {
   scrollTo({ top: 0, behavior: "instant" });
   if (!loaderAnime.value) {
-    tl.to("main", { height: "100vh", overflow: "hidden", duration: 0 });
+    tl.to("main", { height: "100dvh", overflow: "hidden", duration: 0 });
     tl.to(".title .letter", { width: 0, duration: 0 }, "<");
     tl.to(".title .images", {
       width: width.value,
