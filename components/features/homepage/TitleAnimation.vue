@@ -116,7 +116,7 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
 
-  padding-top: rem(80);
+  
   background: var(--text-color);
   color: var(--background-color);
 
@@ -131,6 +131,7 @@ onMounted(() => {
 
   @media screen and (min-width: 1024px) {
     font-size: rem(128);
+  padding-top: rem(80);
   }
 
   &__center {
