@@ -67,7 +67,9 @@ onMounted(() => {
   top: 0;
   z-index: 1000;
   padding-inline: rem(24);
-  max-width: $xxl;
+  max-width: rem(1920);
+  left: 50%;
+  translate: -50%;
   &__section {
     display: flex;
     align-items: center;
