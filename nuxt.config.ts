@@ -2,6 +2,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
   css: ["~/style/main.scss"],
+  modules: ["@nuxtjs/storybook"],
   vite: {
     css: {
       preprocessorOptions: {
@@ -24,5 +25,11 @@ export default defineNuxtConfig({
   ],
   build: {
     transpile: ["gsap"],
+  },
+
+  storybook: {
+    // Options
+    url: "http://localhost:6006",
+    port: 6006,
   },
 });

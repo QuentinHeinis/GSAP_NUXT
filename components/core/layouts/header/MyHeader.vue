@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import {
+  ShoppingCartIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/vue/24/outline";
 import type Lenis from "lenis";
 
 const lenis = useState<Lenis>("lenis");
@@ -7,6 +11,8 @@ const scrollPercentage = ref<number>(0);
 const isLightColors = ref<boolean>();
 
 const menuOpen = ref<boolean>(false);
+const cartOpen = ref<boolean>(false);
+const searchOpen = ref<boolean>(false);
 
 const toggleColorTheme = () => {
   isLightColors.value = !isLightColors.value;
@@ -17,6 +23,7 @@ const toggleColorTheme = () => {
 const scrollTop = () => {
   scrollTo({ top: 0, behavior: "smooth" });
 };
+
 onMounted(() => {
   isLightColors.value = localStorage.getItem("theme") == "light" ? true : false;
 
@@ -26,7 +33,7 @@ onMounted(() => {
       const documentHeight = document.documentElement.scrollHeight;
       const windowHeight = window.innerHeight;
       scrollPercentage.value = Math.floor(
-        (scrollPosition / (documentHeight - windowHeight)) * 100
+        (scrollPosition / (documentHeight - windowHeight )) * 100
       );
     });
   }, 0);
@@ -37,16 +44,24 @@ onMounted(() => {
   <header class="header">
     <div class="header__section">
       <NuxtLink to="/" class="header__home" @click="scrollTop()"
-        >Janezia</NuxtLink
+        >Suihira</NuxtLink
       >
-      <p v-if="scrollPercentage">
+      <p v-if="scrollPercentage" class="header__scrollpercent">
         {{ scrollPercentage < 10 ? "0" + scrollPercentage : scrollPercentage }}%
       </p>
-      <p v-if="!scrollPercentage">00%</p>
+      <p v-if="!scrollPercentage" class="header__scrollpercent">00%</p>
     </div>
     <div class="header__section">
       <MyNav :menuOpen :close-menu="() => (menuOpen = false)" />
+      <MyCart :cartOpen :close-cart="() => (cartOpen = false)" />
+      <MySearch :searchOpen :close-search="() => (searchOpen = false)" />
       <button @click="menuOpen = true" class="header__menu">Menu</button>
+      <button class="header__cart" @click="cartOpen = true">
+        <ShoppingCartIcon />
+      </button>
+      <button class="header__cart" @click="searchOpen = true">
+        <MagnifyingGlassIcon />
+      </button>
       <button
         class="toggleColor"
         @click="toggleColorTheme()"
@@ -67,7 +82,7 @@ onMounted(() => {
   top: 0;
   z-index: 1000;
   padding-inline: rem(24);
-  max-width: rem(1920);
+  max-width: 1920px;
   left: 50%;
   translate: -50%;
   &__section {
@@ -87,7 +102,7 @@ onMounted(() => {
     border: none;
     background: transparent;
     cursor: pointer;
-    &:hover{
+    &:hover {
       text-decoration: underline;
       text-underline-offset: 2px;
     }
@@ -101,14 +116,36 @@ onMounted(() => {
     font-family: "Stalinist One", sans-serif;
     text-transform: uppercase;
   }
+  &__cart {
+    display: flex;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    appearance: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+  }
+  &__scrollpercent {
+    display: none;
+    @include media(sm) {
+      display: block;
+    }
+  }
 
   .toggleColor {
+    cursor: pointer;
     height: 20px;
     width: 20px;
     border-radius: 50%;
     appearance: none;
     border: none;
     background: var(--text-color);
+    display: none;
+    @include media(xs) {
+      display: block;
+    }
   }
 }
 </style>

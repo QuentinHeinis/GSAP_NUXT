@@ -6,17 +6,19 @@
 :root {
   --text-color: rgb(26, 26, 25);
   --background-color: rgb(236, 236, 224);
+  --accent-color: rgb(245, 238, 210);
   &:has(.toggleColor[data-color-theme="dark"]) {
     --text-color: rgb(236, 236, 224);
     --background-color: rgb(26, 26, 25);
+    --accent-color: rgb(48, 46, 39);
   }
 }
 
-*,
-*::after,
-*::before {
-  transition: color ease 0.3s, background ease 0.3s;
-}
+// *,
+// *::after,
+// *::before {
+//   transition: color ease 0.3s, background ease 0.3s;
+// }
 
 body {
   font-family: "Outfit", sans-serif;
@@ -45,4 +47,8 @@ html.lenis body {
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
+}
+
+main{
+  min-height: 100dvh;
 }

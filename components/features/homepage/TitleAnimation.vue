@@ -1,10 +1,38 @@
 <script lang="ts" setup>
 import gsap from "gsap";
+import type Lenis from "lenis";
 const loaderAnime = useState("loaderAnime");
+const lenis = useState<Lenis>("lenis");
+const props = defineProps({
+  title: {
+    type: String,
+    default: "Suihira",
+  },
+});
+let firstPart = props.title.slice(0, Math.floor(props.title.length / 2));
+let secondPart = props.title.slice(
+  Math.ceil(props.title.length / 2),
+  props.title.length
+);
+let middleLetter =
+  props.title.length % 2
+    ? props.title.slice(
+        Math.floor(props.title.length / 2),
+        Math.ceil(props.title.length / 2)
+      )
+    : null;
 
 let animation = (tl: gsap.core.Timeline, width: Ref) => {
   scrollTo({ top: 0, behavior: "instant" });
+
   if (!loaderAnime.value) {
+    setTimeout(() => {
+      lenis.value.stop();
+    }, 0);
+    setTimeout(() => {
+      lenis.value.start();
+    }, 2500);
+
     tl.to("main", { height: "100dvh", overflow: "hidden", duration: 0 });
     tl.to(".title .letter", { width: 0, duration: 0 }, "<");
     tl.to(".title .images", {
@@ -25,11 +53,13 @@ let animation = (tl: gsap.core.Timeline, width: Ref) => {
       background: "var(--background-color)",
       ease: "expo.in",
     });
+
     tl.to(
       "main",
       { height: "fit-content", overflow: "unset", duration: 0 },
       "<"
     );
+
   } else {
     tl.to(".title .letter", { width: width.value, duration: 0 });
 
@@ -71,7 +101,7 @@ onMounted(() => {
 
 <template>
   <h1 class="title" :class="loaderAnime ? '-loaded' : ''">
-    <span>Jan</span>
+    <span>{{ firstPart }}</span>
     <span class="title__center">
       <span aria-hidden="true" class="images">
         <div class="image">
@@ -99,9 +129,9 @@ onMounted(() => {
           <img src="/img/image4.jpg" alt="" />
         </div>
       </span>
-      <span class="letter">e</span>
+      <span class="letter" v-if="middleLetter">{{ middleLetter }}</span>
     </span>
-    <span>zia</span>
+    <span>{{ secondPart }}</span>
   </h1>
 </template>
 
@@ -116,7 +146,6 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
 
-  
   background: var(--text-color);
   color: var(--background-color);
 
@@ -131,7 +160,7 @@ onMounted(() => {
 
   @media screen and (min-width: 1024px) {
     font-size: rem(128);
-  padding-top: rem(80);
+    padding-top: rem(80);
   }
 
   &__center {

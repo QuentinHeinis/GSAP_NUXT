@@ -1,12 +1,31 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const props = defineProps({
+  title: {
+    type: String,
+    default: "Suihira",
+  },
+});
+let firstPart = props.title.slice(0, Math.floor(props.title.length / 2));
+let secondPart = props.title.slice(
+  Math.ceil(props.title.length / 2),
+  props.title.length
+);
+let middleLetter =
+  props.title.length % 2
+    ? props.title.slice(
+        Math.floor(props.title.length / 2),
+        Math.ceil(props.title.length / 2)
+      )
+    : null;
+</script>
 
 <template>
   <p class="notitle">
-    <span>Jan</span>
+    <span>{{firstPart}}</span>
     <span class="notitle__center">
-      <span class="letter">e</span>
+      <span class="letter" v-if="middleLetter">{{middleLetter}}</span>
     </span>
-    <span>zia</span>
+    <span>{{secondPart}}</span>
   </p>
 </template>
 
@@ -20,12 +39,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: rem(80);
   color: var(--text-color);
   background: var(--background-color);
 
   height: 240px;
-
   @media screen and (min-width: 375px) {
     font-size: rem(48);
   }
@@ -35,6 +52,7 @@
 
   @media screen and (min-width: 1024px) {
     font-size: rem(128);
+    padding-top: rem(80);
   }
 
   &__center {

@@ -1,32 +1,25 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import type Lenis from "lenis";
+
+const lenis = useState<Lenis>("lenis");
+onMounted(() => {
+  setTimeout(() => {
+    lenis.value.options.infinite = true;
+  }, 0);
+});
+
+onUnmounted(() => {
+  lenis.value.options.infinite = false;
+});
+</script>
 
 <template>
   <main>
     <HomeHero />
-    <div class="grid">
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-    </div>
-    <HomeHero :playAnimation="false" />
-
+    <MyBestSellings />
   </main>
+  <MyFooter />
+  <HomeHero :playAnimation="false" />
 </template>
 
-<style lang="scss" scoped>
-main {
-  height: 300vh;
-  .grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: rem(20);
-    justify-content: center;
-    .item {
-      height: 40vh;
-      width: 40%;
-      background: rgb(255, 255, 255);
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

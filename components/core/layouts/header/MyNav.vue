@@ -17,6 +17,7 @@ const handleClose = () => {
       props.closeMenu();
     }, 1000);
   });
+  scrollTo({ top: 0, behavior: "smooth" });
 };
 
 watch(
@@ -55,14 +56,14 @@ onMounted(() => {
     </div>
     <span aria-hidden class="nav__line"></span>
     <div class="nav__link-wrapper">
-      <NuxtLink to="/about" class="nav__link" @click="handleClose()"
-        ><span>About</span></NuxtLink
+      <NuxtLink to="/produits" class="nav__link" @click="handleClose()"
+        ><span>Produits</span></NuxtLink
       >
     </div>
     <span aria-hidden class="nav__line"></span>
     <div class="nav__link-wrapper">
-      <NuxtLink to="/projects" class="nav__link" @click="handleClose()"
-        ><span>Projects</span></NuxtLink
+      <NuxtLink to="/a-propos" class="nav__link" @click="handleClose()"
+        ><span>à propos</span></NuxtLink
       >
     </div>
     <span aria-hidden class="nav__line"></span>
@@ -81,7 +82,8 @@ onMounted(() => {
   background: var(--background-color);
   transition: all 0.5s ease-in-out;
   padding-inline: rem(24);
-  height:100dvh;
+  height: 100dvh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,10 +93,10 @@ onMounted(() => {
   @include media(md) {
     position: static;
     background: transparent;
-    height:fit-content;
     translate: 0 0;
     flex-direction: row;
     gap: rem(16);
+    height: fit-content;
   }
   &.-open {
     translate: 0 0;
@@ -174,6 +176,10 @@ onMounted(() => {
       &:hover {
         opacity: 0.8;
       }
+    }
+
+    span {
+      min-width: max-content;
     }
 
     @include media(md) {

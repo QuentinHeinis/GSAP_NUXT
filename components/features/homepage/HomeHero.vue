@@ -13,25 +13,18 @@ defineProps({
     :class="playAnimation ? '' : 'maxHeight'"
     :aria-hidden="!playAnimation"
   >
-    <TitleAnimation v-if="playAnimation" />
-    <TitleNoAnimation v-if="!playAnimation" />
-    <div class="grid">
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-    </div>
+    <TitleAnimation v-if="playAnimation" title="Suihira" />
+    <TitleNoAnimation v-if="!playAnimation" title="Suihira" />
+    <MyBanner />
   </section>
 </template>
 
 <style lang="scss" scoped>
 .hero {
-  min-height: 100dvh;
+  min-height: 100vh;
   overflow: hidden;
   &.maxHeight {
-    max-height: 100dvh;
+    max-height: 100vh;
   }
 }
 .grid {

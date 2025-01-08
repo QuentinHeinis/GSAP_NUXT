@@ -10,10 +10,13 @@ onMounted(() => {
     "lenis",
     () =>
       new Lenis({
-        infinite: true,
-        syncTouch:true
+        syncTouch: true,
       })
   );
+
+  setTimeout(() => {
+    loaderAnime.value = true;
+  }, 500);
 
   function raf(time: number) {
     lenis.value.raf(time);
@@ -23,7 +26,6 @@ onMounted(() => {
 });
 const router = useRouter();
 router.beforeEach((to, from, next) => {
-  // Animation de l'écran rouge sortant avant de changer de page
   gsap.to(transitionScreen.value, {
     y: "0%",
     duration: 0.5,
