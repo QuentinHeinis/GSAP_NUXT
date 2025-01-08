@@ -126,6 +126,7 @@ onMounted(() => {
     border: none;
     cursor: pointer;
     color: var(--text-color);
+    align-items: center;
   }
   &__scrollpercent {
     display: none;
